@@ -1,23 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Spot from './Spot';
+import Container from './Container';
 import NavItem from './NavItem';
 
-var spotlightData = require('../json/spotlight.json');
-console.log(spotlightData);
-var spotlights = spotlightData['items'];
-console.log(spotlights);
-
 export default class App extends React.Component {
-  render () {
+  constructor(props) {
+    super(props);
+    this.navigate = this.navigate.bind(this);
+    this.state = {content: 'mine'};
+  }
+
+  navigate(dest) {
+    this.setState({content: dest});
+  }
+
+  render() {
+    const content = this.state.content;
+    console.log("this.state.content == " + content);
     return (
       <div id="app">
         <div id="nav">
-          <NavItem name="mine" active={false} />
-          <NavItem name="others" active={true} />
+          <NavItem 
+            name="mine"
+            content={content}
+            navigate={this.navigate}
+          />
+          <NavItem 
+            name="others"
+            content={content}
+            navigate={this.navigate}
+          />
         </div>
-        <Spot spotlights={spotlights} />
+        <Container 
+          content={content}
+        />
       </div>
     );
   }

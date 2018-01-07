@@ -1,14 +1,20 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
-export default class Spotlight extends React.Component {
-  render () {
-    return (
-      <div className="spotlight" id={this.key}>
-        <p className="spotlightTitle">{this.props.name}</p>
-        <a href={this.props.url}>
-          <img src={this.props.img} className="spotlightImg"></img>
-        </a>
-      </div>
-    );
-  }
-}
+import SpotlightItem from './SpotlightItem';
+
+
+const Spotlight = ({spotlights}) => (
+  <div id="spotlight">
+    {spotlights.map(spotlightItem => (
+      <SpotlightItem 
+        key={spotlightItem.id}
+        name={spotlightItem.name}
+        img={spotlightItem.img}
+        url={spotlightItem.url}
+      />
+    ))}
+  </div>
+);
+
+export default Spotlight;

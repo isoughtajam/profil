@@ -19,7 +19,7 @@ body {
   height: 400px;
 }
 
-#spot {
+#spotlight {
   width: 50%;
   left: 0;
   right: 0; 
@@ -29,7 +29,7 @@ body {
   padding-right: 20px;
 }
 
-.spotlight {
+.spotlightItem {
   background-color: rgba(70, 70, 70, 0.75);
   padding-top: 20px;
   padding-bottom: 40px;
@@ -40,14 +40,14 @@ body {
   font-size: 24pt;
 }
 
-.spotlightImg {
+.spotlightItemImg {
   width: 100%;
   max-width: 100%;
   min-width: 100%;
   padding: 0;
 }
 
-.spotlightTitle {
+.spotlightItemTitle {
   display: inline-block;
   background-color: rgb(150, 150, 150);
   color: rgb(70, 70, 70);
