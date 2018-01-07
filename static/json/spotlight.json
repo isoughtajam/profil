@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "name": "bailbloc",
+      "id": "bailbloc",
+      "url": "https://thenewinquiry.com/bail-bloc/",
+      "img": "../images/bailbloc.jpg"
+    },
+    {
+      "name": "Containers",
+      "id": "containers",
+      "url": "https://www.flexport.com/blog/alexis-madrigal-containers-podcast/",
+      "img": "images/containers.jpg"
+    }
+  ]
+}

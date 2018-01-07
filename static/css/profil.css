@@ -2,7 +2,83 @@ body {
   text-decoration: none;
 }
 
+#app {
+  background-image: url("../images/train_station_wall_bw.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  overflow: scroll;
+}
+
 #container {
   display: block;
   height: 400px;
+}
+
+#spot {
+  width: 50%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.spotlight {
+  background-color: rgba(70, 70, 70, 0.75);
+  padding-top: 20px;
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-size: 24pt;
+}
+
+.spotlightImg {
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  padding: 0;
+}
+
+.spotlightTitle {
+  display: inline-block;
+  background-color: rgb(150, 150, 150);
+  color: rgb(70, 70, 70);
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: 'Roboto', sans-serif;
+}
+
+#nav {
+  position: fixed;
+  max-width: 20%;
+}
+
+.navItem {
+  background-color: rgb(220, 220, 220);
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 20px 0 0 40px;
+  float: left;
+  clear: left;
+  text-align: center;
+}
+
+.navLink {
+  text-decoration: none;
+  color: rgb(70, 70, 70);
+}
+
+.navText {
+  font-family: 'Roboto', sans-serif;
+  vertical-align: middle;
+  margin: 0;
+  font-size: 18pt;
 }

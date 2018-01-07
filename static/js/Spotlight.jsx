@@ -1,11 +1,14 @@
 import React from 'react';
 
-var Spotlight = React.createClass({
-  render: function() {
+export default class Spotlight extends React.Component {
+  render () {
     return (
-      <div id='spotlight'></div>
+      <div className="spotlight" id={this.key}>
+        <p className="spotlightTitle">{this.props.name}</p>
+        <a href={this.props.url}>
+          <img src={this.props.img} className="spotlightImg"></img>
+        </a>
+      </div>
     );
   }
-});
-
-export default Spotlight;
+}
