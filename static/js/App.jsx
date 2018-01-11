@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import Container from './Container';
 import NavItem from './NavItem';
+import Timer from './Timer';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -32,6 +33,7 @@ export default class App extends React.Component {
             navigate={this.navigate}
           />
         </div>
+        <Timer />
         <Container 
           content={content}
         />

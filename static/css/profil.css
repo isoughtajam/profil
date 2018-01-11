@@ -59,13 +59,15 @@ body {
 #nav {
   position: fixed;
   max-width: 20%;
+  top: 20px;
+  left: 40px;
 }
 
 .navItem {
   background-color: rgb(220, 220, 220);
   padding-left: 10px;
   padding-right: 10px;
-  margin: 20px 0 0 40px;
+  margin-bottom: 20px;
   float: left;
   clear: left;
   text-align: center;
@@ -81,6 +83,24 @@ body {
   vertical-align: middle;
   margin: 0;
   font-size: 18pt;
+}
+
+#timers {
+  background-color: rgb(220, 220, 220);
+  position: fixed;
+  left: 40px;
+  bottom: 20px;
+  color: white;
+  clear: left;
+}
+
+.timer {
+  margin: 5px;
+}
+
+.lines {
+  stroke: rgb(70, 70, 70);
+  /*stroke-width: 1.5;*/
 }
 
 /*
