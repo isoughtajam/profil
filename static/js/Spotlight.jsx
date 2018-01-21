@@ -12,6 +12,7 @@ const Spotlight = ({spotlights}) => (
         name={spotlightItem.name}
         img={spotlightItem.img}
         url={spotlightItem.url}
+        text={spotlightItem.text}
       />
     ))}
   </div>

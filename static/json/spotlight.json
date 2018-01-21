@@ -4,13 +4,22 @@
       "name": "bailbloc",
       "id": "bailbloc",
       "url": "https://thenewinquiry.com/bail-bloc/",
-      "img": "../images/bailbloc.jpg"
+      "img": "../images/bailbloc.jpg",
+      "text": ""
     },
     {
       "name": "Containers",
       "id": "containers",
       "url": "https://www.flexport.com/blog/alexis-madrigal-containers-podcast/",
-      "img": "images/containers.jpg"
+      "img": "images/containers.jpg",
+      "text": ""
+    },
+    {
+      "name": "Beaker Browser",
+      "id": "beaker-browser",
+      "url": "https://beakerbrowser.com/",
+      "img": "images/beaker_browser.jpg",
+      "text": ""
     }
   ]
 }

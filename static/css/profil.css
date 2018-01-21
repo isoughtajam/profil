@@ -3,7 +3,7 @@ body {
 }
 
 #app {
-  background-image: url("../images/train_station_wall_bw.jpg");
+  background-image: url("../images/river-stacks-muted.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -16,28 +16,40 @@ body {
 
 #container {
   display: block;
-  height: 400px;
+  /*height: 400px;*/
 }
 
 #spotlight {
-  width: 50%;
-  left: 0;
-  right: 0; 
-  margin-left: auto;
-  margin-right: auto;
+  background-color: rgba(255, 255, 255, 0.75);
+  left: 25%;
+  top: 99%;
+  width: auto;
+  position: relative;
+  float: right;
+
+  /*min-width: 300px;
+  max-width: 400px;*/
+
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
   padding-left: 20px;
   padding-right: 20px;
 }
 
 .spotlightItem {
-  background-color: rgba(70, 70, 70, 0.75);
-  padding-top: 20px;
-  padding-bottom: 40px;
+  /*background-color: rgba(255, 255, 255, 0.75);*/
+  display: inline-block;
+  vertical-align: top;
+  padding: 20px;
+  /*padding-bottom: 40px;
   padding-left: 20px;
-  padding-right: 20px;
+  padding-right: 20px;*/
   margin-top: 20px;
   margin-bottom: 40px;
-  font-size: 24pt;
+  font-size: 14pt;
+  max-width: 25%;
+  min-width: 20%;
 }
 
 .spotlightItemImg {
@@ -45,15 +57,27 @@ body {
   max-width: 100%;
   min-width: 100%;
   padding: 0;
+  box-shadow: 5px 5px 5px #888;
 }
 
 .spotlightItemTitle {
   display: inline-block;
-  background-color: rgb(150, 150, 150);
-  color: rgb(70, 70, 70);
+  /*background-color: rgb(150, 150, 150);
   padding-left: 10px;
-  padding-right: 10px;
+  padding-right: 10px;*/
+  color: rgb(70, 70, 70);
   font-family: 'Roboto Mono', monospace;
+  /*margin-bottom: 10px;*/
+}
+
+.spotlightItemImgDiv {
+  position: relative;
+  top: 40px;
+}
+
+.spotlightItemBlurbDiv {
+  position: relative;
+  margin-top: 10px;
 }
 
 #nav {
@@ -86,11 +110,10 @@ body {
 }
 
 #timers {
-  background-color: rgb(220, 220, 220);
+  background-color: rgba(220, 220, 220, 0.75);
   position: fixed;
   left: 40px;
   bottom: 20px;
-  color: white;
   clear: left;
 }
 
@@ -100,7 +123,6 @@ body {
 
 .lines {
   stroke: rgb(70, 70, 70);
-  /*stroke-width: 1.5;*/
 }
 
 /*

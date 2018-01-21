@@ -30,6 +30,6 @@
     ]
   },
   "dependencies": {
-    "ghadyaal": "^0.2.0"
+    "ghadyaal": "^0.2.3"
   }
 }

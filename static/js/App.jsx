@@ -33,7 +33,10 @@ export default class App extends React.Component {
             navigate={this.navigate}
           />
         </div>
-        <Ghadyaal />
+        <Ghadyaal 
+          backgroundColor="#dcdcdc"
+          opacity={0.75}
+        />
         <Container 
           content={content}
         />
