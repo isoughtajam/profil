@@ -30,6 +30,7 @@
     ]
   },
   "dependencies": {
-    "ghadyaal": "^0.2.3"
+    "ghadyaal": "^0.2.3",
+    "package.json": "^2.0.1"
   }
 }
