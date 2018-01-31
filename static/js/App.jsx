@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Container from './Container';
-import NavItem from './NavItem';
-import Ghadyaal from 'ghadyaal';
+import Footer from './Footer';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -17,26 +16,13 @@ export default class App extends React.Component {
   }
 
   render() {
-    const content = this.state.content;
-    console.log("this.state.content == " + content);
     return (
       <div id="app">
-        <div id="nav">
-          <NavItem 
-            name="mine"
-            content={content}
-            navigate={this.navigate}
-          />
-          <NavItem 
-            name="others"
-            content={content}
-            navigate={this.navigate}
-          />
+        <div className="parallax_top">
+          <div id="title">
+            <span className="display-name">Gautam Joshi</span>
+          </div>
         </div>
-        <Ghadyaal 
-          backgroundColor="#dcdcdc"
-          opacity={0.75}
-        />
         <Container 
           content={content}
         />

@@ -13,7 +13,7 @@ export default class NavItem extends React.Component {
     if (this.props.content == this.props.name) {
       return (
         <div className="navItem">
-          <a className="navLink" onClick={this.handleNavigation}><p className="navText">> {this.props.name}</p></a>
+          <a className="navLink" onClick={this.handleNavigation}><p className="navText">>{this.props.name}</p></a>
         </div>
       );
     } else {

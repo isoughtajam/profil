@@ -15,9 +15,6 @@ export default class SpotlightItem extends React.Component {
           url={this.props.url}
           img={this.props.img}
         />
-        <SpotlightItemBlurb
-          text={this.props.text}
-        />
       </div>
     );
   }
