@@ -5,6 +5,6 @@ cache:
   directories:
   - "node_modules"
 install:
-  - "npm install"
+  - "npm install --prefix static"
 script:
-  - "npm test"
+  - "npm test --prefix static"
