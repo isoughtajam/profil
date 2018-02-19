@@ -1,4 +1,4 @@
 #!/bin/bash
 
-# copy executable js to a directory
-rsync -arv --exclude-from='exclusions.txt' ../static/* $1
+# copy executable js to a location in arg
+rsync -arv --exclude-from=`echo "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"`'/exclusions.txt' `echo "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"`/../static/* $1
