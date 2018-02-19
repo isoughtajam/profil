@@ -24,7 +24,7 @@ export default class App extends React.Component {
           </div>
         </div>
         <Container 
-          content={content}
+          content={this.state.content}
         />
       </div>
     );
