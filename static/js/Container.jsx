@@ -1,57 +1,108 @@
 import React from 'react';
-import Ghadyaal from 'ghadyaal';
 
-import Spotlight from './Spotlight';
-import NavItem from './NavItem';
+import LinkDump from './LinkDump';
+import Post from './Post';
 
-var spotlightData = require('../json/spotlight.json');
-var spotlights = spotlightData['items'];
+var otherLinksData = require('../json/otherlinks.json');
+var otherLinks = otherLinksData['items'];
 
-var projectionData = require('../json/projection.json');
-var projections = projectionData['items'];
+var myLinksData = require('../json/mylinks.json');
+var myLinks = myLinksData['items'];
+
+var socialLinksData = require('../json/sociallinks.json');
+var socialLinks = socialLinksData['items'];
+
+var postData = require('../json/posts.json');
+var posts = postData['items'];
 
 export default class Container extends React.Component {
   constructor(props) {
     super(props);
-    this.navigate = this.navigate.bind(this);
-    this.state = {content: 'mine'};
+    var postIDs = this.getMaxPostIds(posts);
+    this.navigatePost = this.navigatePost.bind(this);
+    this.state = {
+      post: postIDs.post,
+      prevId: postIDs.prevId,
+      nextId: null
+    };
   }
 
-  navigate(dest) {
-    this.setState({content: dest});
+  getMaxPostIds(items) {
+    if (items.length <= 1) {
+      return {
+        post: posts[0],
+        prevId: null,
+        nextId: null
+      };
+    } else {
+      posts = items.sort((a,b) => b.id - a.id);
+      return {
+        post: posts[0],
+        prevId: posts[1].id,
+        nextId: null
+      };
+    }
+  }
+
+  getPostPrevAndNextIDs(postId) {
+    var post = posts.find(function(o){if(o.id == postId) {return o}});
+    var index = posts.indexOf(post);
+    var prevId = null;
+    var nextId = null;
+    if (index > 0) {
+      nextId = posts[index - 1].id;
+    }
+    if (posts.length - 1 > index) {
+      prevId = posts[index + 1].id;
+    }
+    return {
+      post: post,
+      prevId: prevId,
+      nextId: nextId
+    };
+  }
+
+  navigatePost(postId) {
+    var IDs = this.getPostPrevAndNextIDs(postId);
+    console.log(postId);
+    this.setState(IDs);
   }
 
   render() {
-    const content = this.state.content;
-    console.log("this.state.content == " + content);
-    if (this.state.content == "mine") {
-      var contentType = projections;
-    } else {
-      var contentType = spotlights;
-    }
-    return (
-      <div id="container">
-        <div id="nav">
-          <a href="https://www.npmjs.com/package/ghadyaal" target="_blank"><Ghadyaal
-            backgroundColor="#444"
-            strokeColor="#dcdcdc"
-            numeralSize={40}
-          /></a>
-          <NavItem
-            name="mine"
-            content={content}
-            navigate={this.navigate}
-          />
-          <NavItem
-            name="others"
-            content={content}
-            navigate={this.navigate}
+    if (this.props.content == "blog") {
+      return (
+        <div id="container">
+          <Post
+            post={this.state.post}
+            prevId={this.state.prevId}
+            nextId={this.state.nextId}
+            navigatePost={this.navigatePost}
           />
         </div>
-        <Spotlight
-          spotlights={contentType}
-        />
-      </div>
-    )
+      )
+    } else {
+      return (
+        <div id="container">
+          <div className="my-links">
+            <p className="links-title">mine</p>
+            <LinkDump
+              links={myLinks}
+            />
+          </div>
+          <div className="other-links">
+            <p className="links-title">others</p>
+            <LinkDump
+              links={otherLinks}
+            />
+          </div>
+          <div className="social-links">
+            <p className="links-title">find me</p>
+            <LinkDump
+              links={socialLinks}
+            />
+          </div>
+        </div>
+      )
+    }
   }
 }

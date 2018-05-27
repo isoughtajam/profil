@@ -1,0 +1,46 @@
+{
+  "items": [
+    {
+      "name": "twitter",
+      "id": "twitter",
+      "url": "http://twitter.com/isoughtajam",
+      "img": "../images/bailbloc_sq.jpg"
+    },
+    {
+      "name": "tumblr",
+      "id": "tumblr",
+      "url": "http://isoughtajam.tumblr.com/",
+      "img": "../images/"
+    },
+    {
+      "name": "github",
+      "id": "github",
+      "url": "https://github.com/isoughtajam",
+      "img": "..images/"
+    },
+    {
+      "name": "soundcloud",
+      "id": "soundcloud",
+      "url": "https://soundcloud.com/deepakoprah",
+      "img": "..images/"
+    },
+    {
+      "name": "pandora",
+      "id": "pandora",
+      "url": "https://www.pandora.com/profile/isoughtajam",
+      "img": "..images/"
+    },
+    {
+      "name": "goodreads",
+      "id": "goodreads",
+      "url": "https://goodreads.com/isoughtajam",
+      "img": "..images/"
+    },
+    {
+      "name": "lastfm",
+      "id": "lastfm",
+      "url": "http://www.lastfm.com/user/isoughtajam",
+      "img": "..images/"
+    }
+  ]
+}

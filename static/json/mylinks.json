@@ -1,0 +1,26 @@
+{
+  "items": [
+    {
+      "name": "undergraduate studies in sound",
+      "id": "undergrad-ep",
+      "url": "https://soundcloud.com/deepakoprah/sets/undergraduate-studies-in-sound",
+      "img": "images/undergraduate-studies-in-sound.gif",
+      "text": ""
+    },
+    {
+      "name": "beats made quickly",
+      "id": "beats-made-quickly",
+      "url": "https://soundcloud.com/deepakoprah/sets/beats-made-quickly",
+      "img": "images/beats-made-quickly.gif",
+      "title": "https://giphy.com/channel/boglio",
+      "text": ""
+    },
+    {
+      "name": "ghadyaal",
+      "id": "ghadyaal",
+      "url": "https://www.npmjs.com/package/ghadyaal",
+      "title": "React-based Art Clock: Ghadyaal",
+      "text": ""
+    }
+  ]
+}

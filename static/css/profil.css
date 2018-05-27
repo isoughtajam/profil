@@ -1,161 +1,255 @@
 body {
   text-decoration: none;
+  background: #ccc;
+  color: #555;
 }
 
 #app {
   width: 100%;
   height: 100%;
-  /*position: fixed;
-  overflow: scroll;*/
+  padding-top: 60px;
 }
 
-.parallax_top, .parallax_bottom {
-  position: relative;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
+body div a {
+  text-decoration: none;
+  color: #66b;
 }
 
-.parallax_top {
-  background-image: url("../images/river-stacks-muted.jpg");
-  min-height: 100%;
+body div a:hover {
+  text-decoration: none;
+  color: hotpink;
 }
 
-.parallax_bottom {
-  background-image: url("../images/train_station_wall.jpg");
-  min-height: 700px;
+.post {
+  display: block;
+  font-family: 'Tajawal', sans-serif;
 }
 
-#title {
-  position: absolute;
-  top: 47%;
-  left: 0;
-  text-align: center;
-  padding: 10px;
-  width: 100%;
+.post-title {
+  font-family: 'Raleway', monospace;
+  font-size: 18pt;
 }
 
-.display-name {
-  background-color: #444;
-  color: #fff;
-  width: auto;
-  font-size: 90px;
-  padding: 10px 10px 10px 20px;
-  letter-spacing: 10px;
-  box-shadow: 5px 5px 5px #000;
+.pre-next-link {
+  border: none;
+  background: inherit;
+  color: #66b;
+}
+
+.pre-next-link:hover {
+  color: hotpink;
+}
+
+.my-links {
+  text-align: left;
+}
+
+.social-links {
+  text-align: left;
+}
+
+.links-title {
+  font-family: 'Raleway', monospace;
+  font-size: 18pt;
 }
 
 #container {
   display: inline-block;
-  /*position: relative;*/
-  background-color: #fff;
-  top: 100%;
-  padding-bottom: 40px;
+  position: relative;
+  width: 85%;
+  text-align: right;
+  right: 60px;
+  padding-left: 100px;
+  padding-right: 40px;
 }
 
 #footer {
-  background-color: #fff;
-  min-height: 200px;
-}
-
-#spotlight {
-  background-color: rgba(255, 255, 255, 0.75);
-  left: 25%;
-  width: auto;
-  position: absolute;
-
-  margin-right: 20px;
-  margin-bottom: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.spotlightItem {
-  display: inline-block;
-  vertical-align: top;
-  padding: 0 20px 20px 20px;
-
-  margin: 0 20px 40px 20px;
-  font-size: 14pt;
-  width: 40%;
-}
-
-.spotlightItemImg {
-  padding: 0;
-  box-shadow: 5px 5px 5px #888;
-  max-width: 100%;
-}
-
-.spotlightItemTitle {
-  display: inline-block;
-  color: rgb(70, 70, 70);
-  font-family: 'Roboto Mono', monospace;
-}
-
-.spotlightItemTitle {
-  position: relative;
-}
-
-.spotlightItemTitleDiv {
-  position: relative;
-}
-
-.spotlightItemImgDiv {
-  position: relative;
-  top: 80px;
-  margin-bottom: 100px;
-}
-
-.spotlightItemBlurbDiv {
-  position: relative;
-  margin-top: 10px;
 }
 
 #nav {
-  position: relative;
-  width: 20%;
-  top: 100px;
-  left: 40px;
+  position: absolute;
+  display: inline-block;
+  float: right;
+  width: 15%;
+  right: 40px;
 }
 
-.navItem {
-  background-color: #444;
-  padding-left: 10px;
+.nav-item {
+  padding-left: 0;
   padding-right: 10px;
-  margin-bottom: 20px;
   float: left;
   clear: left;
   text-align: center;
   letter-spacing: 10px;
 }
 
-.navLink {
+.nav-link {
   text-decoration: none;
-  color: rgb(220, 220, 220);
+  border: none;
+  background: inherit;
+  color: #66b;
+  padding-left: 0;
 }
 
-.navLink:hover {
-  text-transform: uppercase;
-  color: #fff;
-  text-decoration: none;
+.nav-link:hover {
+  color: hotpink;
 }
 
-.navText {
-  font-family: 'Roboto Mono', monospace;
+.nav-text-animated {
+  font-family: 'Raleway', monospace;
   vertical-align: middle;
   margin: 0;
   font-size: 18pt;
+  color: #66b;
+  animation-name: example;
+  animation-duration: 100s;
+}
+
+.nav-text {
+  font-family: 'Raleway', monospace;
+  vertical-align: middle;
+  margin: 0;
+  font-size: 18pt;
+  color: #66b;
 }
 
 #timers {
-  position: relative;
-  bottom: 40px;
-  clear: left;
+  margin-bottom: 20px;
+}
+
+.post-nav-link {
+  display: inline;
+
+}
+.post-nav {
+  font-family: 'Raleway', monospace;
 }
 
 .timer {
   margin: 5px;
+}
+
+#spotlight {
+}
+
+.link-dump-item {
+  font-size: 14pt;
+  margin-bottom: 10px;
+}
+
+.link-dump-item-title {
+  position: relative;
+  display: inline-block;
+  font-family: 'Raleway', monospace;
+}
+
+.link-dump-item-title-div {
+  position: relative;
+}
+
+/* add @-webkit-keyframes for safari */
+@keyframes example {
+    0% {color: #66b;}
+    1% {color: #18f;}
+    2% {color: #b4b;}
+    3% {color:#66b;}
+    4% {color:#18f;}
+    5% {color:#b4b;}
+    6% {color:#66b;}
+    7% {color:#18f;}
+    8% {color:#b4b;}
+    9% {color:#66b;}
+    10% {color:#18f;}
+    11% {color:#b4b;}
+    12% {color:#66b;}
+    13% {color:#18f;}
+    14% {color:#b4b;}
+    15% {color:#66b;}
+    16% {color:#18f;}
+    17% {color:#b4b;}
+    18% {color:#66b;}
+    19% {color:#18f;}
+    20% {color:#b4b;}
+    21% {color: #66b;}
+    22% {color: #18f;}
+    23% {color: #b4b;}
+    24% {color:#66b;}
+    25% {color:#18f;}
+    26% {color:#b4b;}
+    27% {color:#66b;}
+    28% {color:#18f;}
+    29% {color:#b4b;}
+    30% {color:#66b;}
+    31% {color:#18f;}
+    32% {color:#b4b;}
+    33% {color:#66b;}
+    34% {color:#18f;}
+    35% {color:#b4b;}
+    36% {color:#66b;}
+    37% {color:#18f;}
+    38% {color:#b4b;}
+    39% {color:#66b;}
+    40% {color:#18f;}
+    41% {color:#b4b;}
+    42% {color: #66b;}
+    43% {color: #18f;}
+    44% {color: #b4b;}
+    45% {color:#66b;}
+    46% {color:#18f;}
+    47% {color:#b4b;}
+    48% {color:#66b;}
+    49% {color:#18f;}
+    50% {color:#b4b;}
+    51% {color:#66b;}
+    52% {color:#18f;}
+    53% {color:#b4b;}
+    54% {color:#66b;}
+    55% {color:#18f;}
+    56% {color:#b4b;}
+    57% {color:#66b;}
+    58% {color:#18f;}
+    59% {color:#b4b;}
+    60% {color:#66b;}
+    61% {color:#18f;}
+    62% {color:#b4b;}
+    63% {color: #66b;}
+    64% {color: #18f;}
+    65% {color: #b4b;}
+    66% {color:#66b;}
+    67% {color:#18f;}
+    68% {color:#b4b;}
+    69% {color:#66b;}
+    70% {color:#18f;}
+    71% {color:#b4b;}
+    72% {color:#66b;}
+    73% {color:#18f;}
+    74% {color:#b4b;}
+    75% {color:#66b;}
+    76% {color:#18f;}
+    77% {color:#b4b;}
+    78% {color:#66b;}
+    79% {color:#18f;}
+    80% {color:#b4b;}
+    81% {color:#66b;}
+    82% {color:#18f;}
+    83% {color:#b4b;}
+    84% {color: #66b;}
+    85% {color: #18f;}
+    86% {color: #b4b;}
+    87% {color:#66b;}
+    88% {color:#18f;}
+    89% {color:#b4b;}
+    90% {color:#66b;}
+    91% {color:#18f;}
+    92% {color:#b4b;}
+    93% {color:#66b;}
+    94% {color:#18f;}
+    95% {color:#b4b;}
+    96% {color:#66b;}
+    97% {color:#18f;}
+    98% {color:#b4b;}
+    99% {color:#66b;}
+    100% {color:#18f;}
 }
 
 /*
