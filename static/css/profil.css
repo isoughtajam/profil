@@ -71,9 +71,6 @@ body div a:hover {
   padding-right: 40px;
 }
 
-#footer {
-}
-
 #nav {
   position: absolute;
   display: inline-block;
@@ -136,6 +133,15 @@ body div a:hover {
   margin: 0;
   font-size: 18pt;
   color: #66b;
+}
+
+.webring-nav {
+  clear: left;
+  float: left;
+}
+
+.webring {
+  width: 50px;
 }
 
 #timers {
