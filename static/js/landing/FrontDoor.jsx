@@ -8,7 +8,7 @@ export default class FrontDoor extends React.Component {
   render() {
     return (
       <div id="frontdoor">
-        <a className="centered" onClick={this.props.enter}>welcome</a>
+        <a className="centered" href="/blog">welcome</a>
       </div>
     );
   }

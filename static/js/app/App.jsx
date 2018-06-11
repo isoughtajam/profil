@@ -40,7 +40,7 @@ export default class App extends React.Component {
             navigate={this.navigate}
           />
           <div className="webring-nav">
-            <a href='http://webring.xxiivv.com/#random' target='_blank'><img className="webring" src='http://webring.xxiivv.com/icon.white.svg'/></a>
+            <a href='http://webring.xxiivv.com/#random' target='_blank'><img className="webring" src='../images/icon.white.svg'/></a>
           </div>
         </div>
         <Footer />

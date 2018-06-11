@@ -3,16 +3,16 @@ import React from 'react';
 import LinkDump from './LinkDump';
 import Post from './Post';
 
-var otherLinksData = require('../json/otherlinks.json');
+var otherLinksData = require('../../json/otherlinks.json');
 var otherLinks = otherLinksData['items'];
 
-var myLinksData = require('../json/mylinks.json');
+var myLinksData = require('../../json/mylinks.json');
 var myLinks = myLinksData['items'];
 
-var socialLinksData = require('../json/sociallinks.json');
+var socialLinksData = require('../../json/sociallinks.json');
 var socialLinks = socialLinksData['items'];
 
-var postData = require('../json/posts.json');
+var postData = require('../../json/posts.json');
 var posts = postData['items'];
 
 export default class Container extends React.Component {

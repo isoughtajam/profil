@@ -1,9 +1,12 @@
 const webpack = require('webpack');
 const config = {
-  entry:  __dirname + '/js/index.jsx',
+  entry:  {
+    landing: __dirname + '/js/landing/index.jsx',
+    app: __dirname + '/js/app/app.entry.jsx'
+  },
   output: {
     path: __dirname + '/dist',
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
   },
   resolve: {
     extensions: ['.js', '.jsx', '.css']
@@ -19,8 +22,8 @@ const config = {
         test: /\.json$/,
         loader: 'json-loader'
       }
-  ]
-}
+    ]
+  }
 };
 
 module.exports = config;

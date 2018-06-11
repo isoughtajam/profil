@@ -145,6 +145,7 @@ body div a:hover {
 }
 
 #timers {
+  height: 40px;
   margin-bottom: 20px;
 }
 
