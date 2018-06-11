@@ -7,9 +7,9 @@ app = Flask(__name__, static_folder="../static/dist", template_folder="../static
 def index():
     return render_template("index.html")
 
-@app.route("/hello")
-def hello():
-    return "Hello World!"
+@app.route("/blog")
+def application():
+    return render_template("app.html")
 
 @app.route("/images/<path:path>")
 def images(path):
