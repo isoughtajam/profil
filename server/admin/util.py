@@ -22,7 +22,7 @@ def save_written_post(data):
     # Escape single quotes
     graphs = [graph.replace("'", "''") for graph in graphs if graph]
 
-    conn = psycopg2.connect(dbname='profil_db', host='localhost')
+    conn = psycopg2.connect('postgresql:///profil_db')
     cursor = conn.cursor()
 
     # Write Post metadata
@@ -86,7 +86,7 @@ def get_post_content(slug):
     """
     get post data from db
     """
-    conn = psycopg2.connect(dbname='profil_db', host='localhost')
+    conn = psycopg2.connect('postgresql:///profil_db')
     cursor = conn.cursor()
 
     cursor.execute(get_post_meta_query(slug=slug))
@@ -115,7 +115,7 @@ def get_latest_post():
     """
     get most recent blog post data
     """
-    conn = psycopg2.connect(dbname='profil_db', host='localhost')
+    conn = psycopg2.connect('postgresql:///profil_db')
     cursor = conn.cursor()
 
     latest_post_query = """
@@ -164,7 +164,7 @@ def get_paragraph_data(post_id):
     """
     get paragraph data for post_id
     """
-    conn = psycopg2.connect(dbname='profil_db', host='localhost')
+    conn = psycopg2.connect('postgresql:///profil_db')
     cursor = conn.cursor()
 
     paragraph_query = """
@@ -184,7 +184,7 @@ def get_prev_and_next_slugs(post_id):
     """
     get previous and next slugs
     """
-    conn = psycopg2.connect(dbname='profil_db', host='localhost')
+    conn = psycopg2.connect('postgresql:///profil_db')
     cursor = conn.cursor()
 
     lag_lead_query = """
