@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 
 import LinkDumpItem from './LinkDumpItem';
 
-
 const LinkDump = ({links}) => (
   <div className="link-dump">
     {links.map(link => (

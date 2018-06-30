@@ -7,7 +7,7 @@ export default class PostNavLink extends React.Component {
   }
 
   prevNextNavigation() {
-    this.props.navigatePost(this.props.postId);
+    this.props.navigatePost(this.props.postSlug);
   }
 
   render() {

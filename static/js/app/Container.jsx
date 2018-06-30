@@ -12,60 +12,46 @@ var myLinks = myLinksData['items'];
 var socialLinksData = require('../../json/sociallinks.json');
 var socialLinks = socialLinksData['items'];
 
-var postData = require('../../json/posts.json');
-var posts = postData['items'];
-
 export default class Container extends React.Component {
   constructor(props) {
     super(props);
-    var postIDs = this.getMaxPostIds(posts);
-    this.navigatePost = this.navigatePost.bind(this);
     this.state = {
-      post: postIDs.post,
-      prevId: postIDs.prevId,
-      nextId: null
+      title: "",
+      slug: "",
+      author: "",
+      postDate: "",
+      paragraphs: [],
+      prevSlug: "",
+      nextSlug: ""
     };
+    this.navigatePost = this.navigatePost.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
   }
 
-  getMaxPostIds(items) {
-    if (items.length <= 1) {
-      return {
-        post: posts[0],
-        prevId: null,
-        nextId: null
-      };
-    } else {
-      posts = items.sort((a,b) => b.id - a.id);
-      return {
-        post: posts[0],
-        prevId: posts[1].id,
-        nextId: null
-      };
-    }
+  /*
+  * Similar to id-based post getting, on mount the component will get the 
+  *   data of the latest blog post and its next/prev slugs.
+  * 
+  * Nav links will use the next/prev slugs.
+  * Post will be instantiated with the appropriate slug. Post will fetch the post
+  *   data to display.
+  */
+  componentDidMount() {
+    fetch("/latest-post")
+      .then(res => res.json())
+      .then(jsonRes => this.setState(jsonRes));
+
   }
 
-  getPostPrevAndNextIDs(postId) {
-    var post = posts.find(function(o){if(o.id == postId) {return o}});
-    var index = posts.indexOf(post);
-    var prevId = null;
-    var nextId = null;
-    if (index > 0) {
-      nextId = posts[index - 1].id;
-    }
-    if (posts.length - 1 > index) {
-      prevId = posts[index + 1].id;
-    }
-    return {
-      post: post,
-      prevId: prevId,
-      nextId: nextId
-    };
-  }
-
-  navigatePost(postId) {
-    var IDs = this.getPostPrevAndNextIDs(postId);
-    console.log(postId);
-    this.setState(IDs);
+  /*
+  * Update state with current post id, previous and nextids
+  */
+  navigatePost(slug) {
+    console.log("navigatePost");
+    console.log(slug);
+    fetch("/post/" + slug)
+      .then(res => res.json())
+      .then(jsonRes => this.setState(jsonRes));
   }
 
   render() {
@@ -73,9 +59,12 @@ export default class Container extends React.Component {
       return (
         <div id="container">
           <Post
-            post={this.state.post}
-            prevId={this.state.prevId}
-            nextId={this.state.nextId}
+            title={this.state.title}
+            author={this.state.author}
+            postDate={this.state.postDate}
+            paragraphs={this.state.paragraphs}
+            prevSlug={this.state.prevSlug}
+            nextSlug={this.state.nextSlug}
             navigatePost={this.navigatePost}
           />
         </div>

@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import PostParagraph from './PostParagraph';
+
 const PostText = ({paragraphs}) => (
   <div id="post-body">
     {paragraphs.map(paragraph => (
-      <p className='post-paragraph' dangerouslySetInnerHTML={ {__html: paragraph} } />
+      <PostParagraph
+        key={paragraph.paraId}
+        paraText={paragraph.paraText}
+      />
     ))}
   </div>
 );
