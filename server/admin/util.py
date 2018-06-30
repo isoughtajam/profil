@@ -104,7 +104,7 @@ def get_post_content(slug):
         "title": title,
         "slug": slug,
         "author": author,
-        "post_date": post_date,
+        "postDate": post_date,
         "paragraphs": graphs,
         "prevSlug": prev_slug,
         "nextSlug": next_slug
@@ -136,7 +136,7 @@ def get_latest_post():
         "title": title,
         "slug": slug,
         "author": author,
-        "post_date": post_date,
+        "postDate": post_date,
         "paragraphs": graphs,
         "prevSlug": prev_slug,
         "nextSlug": next_slug
