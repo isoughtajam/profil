@@ -1,0 +1,18 @@
+#writePostForm {
+  clear: left;
+}
+#postBodyInput {
+  width: 1000px;
+  height: 400px;
+}
+
+.writePostInput {
+  display: block;
+  clear: right;
+  margin: 10px 0 10px 20px;
+}
+
+.clear-right {
+  clear: right;
+  display: block;
+}

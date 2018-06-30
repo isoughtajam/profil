@@ -2,7 +2,8 @@ const webpack = require('webpack');
 const config = {
   entry:  {
     landing: __dirname + '/js/landing/index.jsx',
-    app: __dirname + '/js/app/app.entry.jsx'
+    app: __dirname + '/js/app/app.entry.jsx',
+    admin: __dirname + '/js/admin/admin.entry.jsx'
   },
   output: {
     path: __dirname + '/dist',

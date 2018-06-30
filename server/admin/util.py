@@ -29,7 +29,7 @@ def save_written_post(data):
     meta_query = """
         insert into post_meta (title, author, post_date, post_slug) values
         ('{0}', '{1}', '{2}', '{3}');
-    """.format(title, author, date, post_slug)
+    """.format(title, author, date, slug)
     cursor.execute(meta_query)
     
     # Get post_id of new post metadata
