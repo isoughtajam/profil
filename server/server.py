@@ -6,6 +6,7 @@ from flask import Flask, render_template, send_from_directory, request
 
 from admin.forms import validate_write_post_form
 from admin.util import save_written_post, get_post_content, get_latest_post
+from search import search_post_data
 
 app = Flask(__name__, static_folder="../static/dist", template_folder="../static")
 
@@ -69,6 +70,13 @@ def write():
     return render_template("admin.html", data=context)
 
 
+@app.route('/search/<query>')
+def search(query):
+    search_results = search_post_data(query)
+    # call search util in search.py
+    #   returns post id, title, and text snippets
+    # render_template that can accept ^ data
+    return render_template("search.html") # template TBD
 
 
 if __name__ == "__main__":
