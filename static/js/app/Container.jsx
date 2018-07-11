@@ -37,10 +37,17 @@ export default class Container extends React.Component {
   *   data to display.
   */
   componentDidMount() {
-    fetch("/latest-post")
-      .then(res => res.json())
-      .then(jsonRes => this.setState(jsonRes));
+    var slug = document.getElementById('slug').content;
 
+    if (slug === "") {
+      fetch("/latest-post")
+        .then(res => res.json())
+        .then(jsonRes => this.setState(jsonRes));
+    } else {
+      fetch("/get-post/" + slug)
+        .then(res => res.json())
+        .then(jsonRes => this.setState(jsonRes));
+    }
   }
 
   /*
@@ -49,7 +56,7 @@ export default class Container extends React.Component {
   navigatePost(slug) {
     console.log("navigatePost");
     console.log(slug);
-    fetch("/post/" + slug)
+    fetch("/get-post/" + slug)
       .then(res => res.json())
       .then(jsonRes => this.setState(jsonRes));
   }

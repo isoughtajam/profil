@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% block head_meta %}
+    <meta id="slug" name="slug" content="{{slug}}">
+{% endblock %}
 {% block bundle %}
     <script src="/dist/app.bundle.js" type="text/javascript"></script>
 {% endblock %}

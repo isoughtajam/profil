@@ -157,7 +157,7 @@ body div a:hover {
 
 .post-nav-link {
   display: inline;
-
+  margin-left: 20px;
 }
 .post-nav {
   font-family: 'Raleway', monospace;

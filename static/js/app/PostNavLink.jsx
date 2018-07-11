@@ -11,11 +11,12 @@ export default class PostNavLink extends React.Component {
   }
 
   render() {
+    var dest = "/blog/" + this.props.postSlug;
     return (
       <div className="post-nav-link">
-        <button className="pre-next-link" 
-           onClick={this.prevNextNavigation}
-          >{this.props.text}</button>
+        <a className="pre-next-link"
+          href={dest}
+          >{this.props.text}</a>
       </div>
     );
   }

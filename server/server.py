@@ -17,8 +17,23 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/post/<slug>")
-def post(slug):
+@app.route("/images/<path:path>")
+def images(path):
+    return send_from_directory('../static/images', path)
+
+
+@app.route("/css/<path:path>")
+def css(path):
+    return send_from_directory('../static/css', path)
+
+
+@app.route("/favicon.ico")
+def favicon():
+    return app.send_static_file("../static/images/favicon.gif")
+
+
+@app.route("/get-post/<slug>")
+def get_post(slug):
     """
     find post via slug in db
     """
@@ -34,6 +49,9 @@ def latest_post():
     post_content = get_latest_post()
     return json.dumps(post_content)
 
+@app.route("/blog/<slug>/")
+def blog_post(slug):
+  return render_template("app.html", slug=slug)
 
 @app.route("/blog/")
 def application():
@@ -51,19 +69,6 @@ def write():
     return render_template("admin.html", data=context)
 
 
-@app.route("/images/<path:path>")
-def images(path):
-    return send_from_directory('../static/images', path)
-
-
-@app.route("/css/<path:path>")
-def css(path):
-    return send_from_directory('../static/css', path)
-
-
-@app.route("/favicon.ico")
-def favicon():
-    return app.send_static_file("../static/images/favicon.gif")
 
 
 if __name__ == "__main__":
