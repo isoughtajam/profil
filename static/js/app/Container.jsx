@@ -37,16 +37,18 @@ export default class Container extends React.Component {
   *   data to display.
   */
   componentDidMount() {
-    var slug = document.getElementById('slug').content;
+    if (this.props.content == "blog") {
+      var slug = document.getElementById('slug').content;
 
-    if (slug === "") {
-      fetch("/latest-post")
-        .then(res => res.json())
-        .then(jsonRes => this.setState(jsonRes));
-    } else {
-      fetch("/get-post/" + slug)
-        .then(res => res.json())
-        .then(jsonRes => this.setState(jsonRes));
+      if (slug === "") {
+        fetch("/latest-post")
+          .then(res => res.json())
+          .then(jsonRes => this.setState(jsonRes));
+      } else {
+        fetch("/get-post/" + slug)
+          .then(res => res.json())
+          .then(jsonRes => this.setState(jsonRes));
+      }
     }
   }
 
@@ -63,6 +65,7 @@ export default class Container extends React.Component {
 
   render() {
     if (this.props.content == "blog") {
+      // Render "blog" page
       return (
         <div id="container">
           <Post
@@ -77,6 +80,7 @@ export default class Container extends React.Component {
         </div>
       )
     } else {
+      // Render "links" page
       return (
         <div id="container">
           <div className="my-links">

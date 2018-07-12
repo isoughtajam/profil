@@ -10,7 +10,8 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.navigate = this.navigate.bind(this);
-    this.state = {content: 'blog'};
+    var content = document.getElementById('content-type').content;
+    this.state = {content: content};
   }
 
   navigate(dest) {
@@ -32,12 +33,10 @@ export default class App extends React.Component {
           <NavItem
             name="blog"
             content={this.state.content}
-            navigate={this.navigate}
           />
           <NavItem
             name="links"
             content={this.state.content}
-            navigate={this.navigate}
           />
           <div className="webring-nav">
             <a href='http://webring.xxiivv.com/#random' target='_blank'><img className="webring" src='../../images/icon.white.svg'/></a>

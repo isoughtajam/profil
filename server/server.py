@@ -49,13 +49,20 @@ def latest_post():
     post_content = get_latest_post()
     return json.dumps(post_content)
 
+
 @app.route("/blog/<slug>/")
 def blog_post(slug):
-  return render_template("app.html", slug=slug)
+  return render_template("app.html", slug=slug, content_type="blog")
+
 
 @app.route("/blog/")
 def application():
-    return render_template("app.html")
+    return render_template("app.html", content_type="blog")
+
+
+@app.route("/links")
+def links():
+    return render_template("links.html", content_type="links")
 
 
 @app.route("/admin/", methods=['GET', 'POST'])

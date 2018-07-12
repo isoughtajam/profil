@@ -11,18 +11,19 @@ export default class NavItem extends React.Component {
     this.props.navigate(this.props.name);
   }
   render() {
+    var href = "/" + this.props.name;
     if (this.props.content == this.props.name) {
       return (
         <div className="nav-item">
-          <button className="nav-link" onClick={this.handleNavigation}>
-            <p className="nav-text-animated">{this.props.name}</p></button>
+          <a className="nav-link" href={href}>
+            <p className="nav-text-animated">{this.props.name}</p></a>
         </div>
       );
     } else {
       return (
         <div className="nav-item">
-          <button className="nav-link" onClick={this.handleNavigation}>
-            <p className="nav-text">{this.props.name}</p></button>
+          <a className="nav-link" href={href}>
+            <p className="nav-text">{this.props.name}</p></a>
         </div>
       );
     }
