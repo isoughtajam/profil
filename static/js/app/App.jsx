@@ -21,9 +21,6 @@ export default class App extends React.Component {
   render() {
     return (
       <div id="app">
-        <Container 
-          content={this.state.content}
-        />
         <div id="nav">
           <a href="https://www.npmjs.com/package/ghadyaal" target="_blank"><Ghadyaal
             backgroundColor="#555"
@@ -42,6 +39,9 @@ export default class App extends React.Component {
             <a href='http://webring.xxiivv.com/#random' target='_blank'><img className="webring" src='../../images/icon.white.svg'/></a>
           </div>
         </div>
+        <Container 
+          content={this.state.content}
+        />
         <Footer />
       </div>
     );

@@ -41,7 +41,7 @@ body div a:hover {
 
 .post-title {
   font-family: 'Raleway', monospace;
-  font-size: 18pt;
+  font-size: 24px;
 }
 
 .pre-next-link {
@@ -64,7 +64,15 @@ body div a:hover {
 
 .links-title {
   font-family: 'Raleway', monospace;
-  font-size: 18pt;
+  font-size: 24px;
+}
+
+.post-paragraph {
+  font-size: 16px;
+}
+
+.post-date {
+  font-size: 16px;
 }
 
 #container {
@@ -93,7 +101,7 @@ body div a:hover {
   width: 50%;
   text-align: center;
   font-family: 'Raleway', monospace;
-  font-size: 24pt;
+  font-size: 32px;
   color: #66b;
   transform: translate(0%, 800%);
 }
@@ -126,7 +134,7 @@ body div a:hover {
   font-family: 'Raleway', monospace;
   vertical-align: middle;
   margin: 0;
-  font-size: 18pt;
+  font-size: 24px;
   color: #66b;
   animation-name: example;
   animation-duration: 100s;
@@ -136,7 +144,7 @@ body div a:hover {
   font-family: 'Raleway', monospace;
   vertical-align: middle;
   margin: 0;
-  font-size: 18pt;
+  font-size: 24px;
   color: #66b;
 }
 
