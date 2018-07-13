@@ -83,19 +83,19 @@ export default class Container extends React.Component {
       // Render "links" page
       return (
         <div id="container">
-          <div className="my-links">
+          <div className="my-links link-dump-block">
             <p className="links-title">mine</p>
             <LinkDump
               links={myLinks}
             />
           </div>
-          <div className="other-links">
+          <div className="other-links link-dump-block">
             <p className="links-title">others</p>
             <LinkDump
               links={otherLinks}
             />
           </div>
-          <div className="social-links">
+          <div className="social-links link-dump-block">
             <p className="links-title">find me</p>
             <LinkDump
               links={socialLinks}

@@ -19,13 +19,21 @@ body {
 }
 
 #container {
-  text-align: right;
+  text-align: justify;
   padding: 0 30px 30px 30px;
+  margin-top: 100px;
+  position: absolute;
+  overflow-y: scroll;
 }
 
 #nav {
   height: auto;
-  margin-left: 30px;
+  width: 100%;
+  padding-left: 30px;
+  padding-bottom: 30px;
+  position: fixed;
+  background: #ccc;
+  z-index: 100;
 }
 
 .webring {
@@ -34,6 +42,8 @@ body {
 
 .webring-nav {
   display: inline-block;
+  margin: 20px 0 0 30px;
+  vertical-align: middle;
 }
 
 .post-title {
@@ -52,7 +62,7 @@ body {
 .post-nav-link {
   font-size: 22px;
   display: inline;
-  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .nav-link {
@@ -65,6 +75,13 @@ body {
 
 .nav-item {
   display: inline-block;
+  vertical-align: middle;
+  margin: 20px 0 0 20px;
+  height: 50px;
+}
+
+a {
+  color: #66b;
 }
 
 a:hover {
@@ -76,4 +93,19 @@ a:hover {
   height: 40px;
   display: inline-block;
   margin-top: 20px;
+  vertical-align: middle;
+}
+
+/* Links Page */
+
+.link-dump-item {
+  font-family: 'Raleway', monospace;
+}
+
+.link-dump-block {
+  margin-top: 30px;
+}
+
+.links-title {
+  margin-bottom: 10px;
 }
