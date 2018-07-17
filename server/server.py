@@ -71,7 +71,7 @@ def links():
 def write():
     messages = []
     if request.method == 'POST':
-        if not request.form:
+        if set(request.form.keys()) == set(['username', 'pw']):
             return render_template("write.html")
 
         validate_result, validate_text = validate_write_post_form(request.form)
@@ -97,9 +97,6 @@ def login():
         return render_template("login.html", messages=["Login failed."])
     return render_template("login.html")
 
-"""
-create table users (user_id integer primary key, username varchar(20), nacl varchar(50), passhash varchar(300));
-"""
 
 if __name__ == "__main__":
   app.run()
