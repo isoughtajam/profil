@@ -82,7 +82,7 @@ def write():
             save_result, save_text = save_written_post(request.form)
         messages.append(validate_text)
         return render_template("write.html", messages=messages)
-    return redirect(url_for("login"))
+    return redirect("/login/")
 
 
 @app.route("/login/", methods=['GET', 'POST'])
@@ -96,7 +96,7 @@ def login():
         if nacl and passhash:
             yum = hashlib.sha512(pw + nacl)
             if yum.hexdigest() == passhash:
-                return redirect(url_for('write'), code=307)
+                return redirect("/write/", code=307)
         return render_template("login.html", messages=["Login failed."])
     return render_template("login.html")
 
