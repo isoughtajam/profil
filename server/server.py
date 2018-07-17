@@ -2,6 +2,7 @@
 import hashlib
 import json
 import logging
+from urlparse import urlparse
 
 from flask import Flask, render_template, send_from_directory, request, redirect, url_for
 
@@ -71,7 +72,9 @@ def links():
 def write():
     messages = []
     if request.method == 'POST':
-        if set(request.form.keys()) == set(['username', 'pw']):
+        referrer = request.headers.get('Referer')
+        parsed = urlparse(referrer)
+        if parsed.path == '/login/':
             return render_template("write.html")
 
         validate_result, validate_text = validate_write_post_form(request.form)
