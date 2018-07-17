@@ -1,12 +1,15 @@
 {% extends "base.html" %}
+
 {% block additional_styles %}
     <link rel="stylesheet" href="/css/admin.css">
 {% endblock %}
+
 {% block alerts %}
     {% for message in messages %}
         <p class="messages">{{ message }}</p>
     {% endfor %}
 {% endblock %}
+
 {% block bundle %}
     <script src="/dist/admin.bundle.js" type="text/javascript"></script>
     <script type="text/javascript">

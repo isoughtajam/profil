@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block additional_styles %}
+    <link rel="stylesheet" href="/css/admin.css">
+{% endblock %}
+
+{% block alerts %}
+    {% for message in messages %}
+        <p class="messages">{{ message }}</p>
+    {% endfor %}
+{% endblock %}
+
+{% block bundle %}
+{% endblock %}
+
+{% block html_block %}
+    <form action="/login/" method="post">
+      <input class="form-input" type="text" name="username" />
+      <input class="form-input" type="password" name="pw" />
+      <input class="form-submit" type="submit" value="Login" />
+    </form>
+{% endblock %}

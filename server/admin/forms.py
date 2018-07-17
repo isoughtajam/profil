@@ -13,7 +13,7 @@ def validate_write_post_form(data):
     try:
         datetime.strptime(date, '%Y-%m-%d')
     except Exception as e:
-        return False, e
+        return False, e.message
 
     body = data.get('postBody')
     if not body:

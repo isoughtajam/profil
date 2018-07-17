@@ -1,6 +1,5 @@
 import React from 'react';
 
-import AdminNav from './AdminNav';
 import AdminContainer from './AdminContainer';
 
 export default class Admin extends React.Component {
@@ -19,7 +18,6 @@ export default class Admin extends React.Component {
   render() {
     return(
       <div id="admin">
-        <AdminNav navigate={this.navigate} />
         <AdminContainer adminPage={this.state.adminPage} />
       </div>
     )

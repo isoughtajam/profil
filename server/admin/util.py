@@ -2,6 +2,10 @@ from datetime import datetime
 import psycopg2
 import re
 import time
+from functools import wraps
+
+from flask import g, request, redirect, url_for
+
 
 def save_written_post(data):
     """
@@ -188,10 +192,28 @@ def get_prev_and_next_slugs(post_id):
     cursor = conn.cursor()
 
     lag_lead_query = """
-      select post_id, lag(post_slug, 1) over (order by post_id), lead(post_slug, 1) over (order by post_id) from post_meta;
+        select post_id, lag(post_slug, 1) over (order by post_id), lead(post_slug, 1) over (order by post_id) from post_meta;
     """
     cursor.execute(lag_lead_query)
     lag_lead_data = cursor.fetchall()
 
     conn.close()
     return [(slugs[1], slugs[2]) for slugs in lag_lead_data if slugs[0] == post_id][0]
+
+
+def get_pre_login_info(username):
+    conn = psycopg2.connect('postgresql:///profil_db')
+    cursor = conn.cursor()
+
+    pre_login_query = """
+        select nacl, passhash from users where username='{0}'
+    """.format(username)
+
+    cursor.execute(pre_login_query)
+    pre_login_data = cursor.fetchall()
+    conn.close()
+
+    if pre_login_data:
+        return pre_login_data[0][0], pre_login_data[0][1]
+    else:
+        return None, None

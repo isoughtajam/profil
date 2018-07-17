@@ -16,3 +16,18 @@
   clear: right;
   display: block;
 }
+
+.messages {
+  margin-left: 20px;
+  color: red;
+}
+
+.form-input {
+  display: block;
+  margin: 0 0 10px 20px;
+}
+
+.form-submit {
+  display: block;
+  margin: 20px 0 0 20px;
+}
