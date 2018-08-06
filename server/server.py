@@ -11,6 +11,7 @@ from admin.util import (save_written_post, get_post_content,
     get_latest_post, get_pre_login_info)
 
 app = Flask(__name__, static_folder="../static/dist", template_folder="../static")
+app.config.from_envvar('PROFIL_CONFIG')
 
 logger = logging.getLogger(__name__)
 
@@ -38,7 +39,7 @@ def favicon():
 @app.route("/get-post/<slug>")
 def get_post(slug):
     """
-    find post via slug in db
+    Endpoint to get blog post via slug
     """
     post_content = get_post_content(slug)
     return json.dumps(post_content)
@@ -47,7 +48,7 @@ def get_post(slug):
 @app.route("/latest-post")
 def latest_post():
     """
-    Get most recent post
+    Endpoint to get latest blog post
     """
     post_content = get_latest_post()
     return json.dumps(post_content)
@@ -55,21 +56,36 @@ def latest_post():
 
 @app.route("/blog/<slug>/")
 def blog_post(slug):
-  return render_template("app.html", slug=slug, content_type="blog")
+    """
+    View for rendering a particular blog post
+    - meta tag contains "blog"
+    """
+    return render_template("app.html", slug=slug, content_type="blog")
 
 
 @app.route("/blog/")
 def application():
+    """
+    View for rendering the latest blog post
+    - meta tag contains "blog"
+    """
     return render_template("app.html", content_type="blog")
 
 
 @app.route("/links/")
 def links():
+    """
+    View for rendering the links page
+    - meta tag contains "links"
+    """
     return render_template("links.html", content_type="links")
 
 
 @app.route("/write/", methods=['GET', 'POST'])
 def write():
+    """
+    Admin view for writing a blog post
+    """
     messages = []
     if request.method == 'POST':
         referrer = request.headers.get('Referer')
@@ -87,6 +103,9 @@ def write():
 
 @app.route("/login/", methods=['GET', 'POST'])
 def login():
+    """
+    View for logging in to admin view
+    """
     if request.method == 'POST':
         username = request.form.get('username')
         pw = request.form.get('pw')
@@ -96,6 +115,8 @@ def login():
         if nacl and passhash:
             yum = hashlib.sha512(pw + nacl)
             if yum.hexdigest() == passhash:
+                if not app.config.get('DEBUG'):
+                    request.environ['wsgi.url_scheme'] = 'https'
                 return redirect("/write/", code=307)
         return render_template("login.html", messages=["Login failed."])
     return render_template("login.html")

@@ -41,6 +41,12 @@
       "id": "lastfm",
       "url": "http://www.lastfm.com/user/isoughtajam",
       "img": "..images/"
+    },
+    {
+      "name": "scuttlebutt via between-two-worlds.dk",
+      "id": "scuttlebutt",
+      "url": "http://between-two-worlds.dk:8807/@Mx4uxw/XeBSrw9ZU8yKIIWbu/6QGrOOu90K7OTDbVWk=.ed25519",
+      "img": "..images/"
     }
   ]
 }
