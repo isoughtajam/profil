@@ -23,6 +23,20 @@
     {% endblock %}
   </head>
   <body>
+    <script type="text/javascript">
+        $(function() {
+            $('form').each(function() {
+                $(this).find('input').keypress(function(e) {
+                    // Enter pressed?
+                    if(e.which == 10 || e.which == 13) {
+                        this.form.submit();
+                    }
+                });
+
+                $(this).find('input[type=submit]').hide();
+            });
+        });
+    </script>
     {% block alerts %}{% endblock %}
     <div id="root" />
     {% block bundle %}

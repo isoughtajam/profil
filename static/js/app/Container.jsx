@@ -2,6 +2,7 @@ import React from 'react';
 
 import LinkDump from './LinkDump';
 import Post from './Post';
+import SearchResultsContainer from '../search/SearchResultsContainer';
 
 var otherLinksData = require('../../json/otherlinks.json');
 var otherLinks = otherLinksData['items'];
@@ -79,7 +80,7 @@ export default class Container extends React.Component {
           />
         </div>
       )
-    } else {
+    } else if (this.props.content == "links") {
       // Render "links" page
       return (
         <div id="container">
@@ -101,6 +102,12 @@ export default class Container extends React.Component {
               links={socialLinks}
             />
           </div>
+        </div>
+      )
+    } else if (this.props.content == "search") {
+      return (
+        <div id="container">
+          <SearchResultsContainer />
         </div>
       )
     }

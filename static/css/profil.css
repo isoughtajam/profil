@@ -34,12 +34,17 @@ body div a:hover {
   color: hotpink;
 }
 
+#terms {
+  background: #999;
+  border: none;
+}
+
 .post {
   display: block;
   font-family: 'Tajawal', sans-serif;
 }
 
-.post-title {
+.post-title, .search-header {
   font-family: 'Raleway', monospace;
   font-size: 24px;
 }

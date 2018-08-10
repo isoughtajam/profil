@@ -4,7 +4,8 @@ const config = {
     landing: __dirname + '/js/landing/index.jsx',
     app: __dirname + '/js/app/app.entry.jsx',
     admin: __dirname + '/js/admin/admin.entry.jsx',
-    links: __dirname + '/js/links/links.entry.jsx'
+    links: __dirname + '/js/links/links.entry.jsx',
+    search: __dirname + '/js/search/search.entry.jsx'
   },
   output: {
     path: __dirname + '/dist',

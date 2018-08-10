@@ -9,6 +9,8 @@ from flask import Flask, render_template, send_from_directory, request, redirect
 from admin.forms import validate_write_post_form
 from admin.util import (save_written_post, get_post_content, 
     get_latest_post, get_pre_login_info)
+from search import parse_search_terms_into_tsquery, search_post_data
+
 
 app = Flask(__name__, static_folder="../static/dist", template_folder="../static")
 app.config.from_envvar('PROFIL_CONFIG')
@@ -99,6 +101,28 @@ def write():
         messages.append(validate_text)
         return render_template("write.html", messages=messages)
     return redirect("/login/")
+
+
+@app.route("/get-search-results/<search_string>")
+def get_search_results(search_string):
+    """
+    Endpoint to get search result data for a particular search string
+    """
+    terms = parse_search_terms_into_tsquery(search_string)
+    results = search_post_data(terms)
+
+    # Return json object of search results
+    return json.dumps(results)
+
+
+@app.route("/search/")
+def search():
+    """
+    View for rendering search page
+    - meta tag contains "search"
+    """
+    term_str = request.args.get('terms', '')
+    return render_template("search.html", content_type="search", term_string=term_str)
 
 
 @app.route("/login/", methods=['GET', 'POST'])

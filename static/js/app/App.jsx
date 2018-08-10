@@ -5,6 +5,7 @@ import Ghadyaal from 'ghadyaal';
 import Container from './Container';
 import Footer from './Footer';
 import NavItem from './NavItem';
+import SearchBar from './SearchBar';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -27,6 +28,7 @@ export default class App extends React.Component {
             strokeColor="#ccc"
             numeralSize={30}
           /></a>
+          <SearchBar />
           <NavItem
             name="blog"
             content={this.state.content}
