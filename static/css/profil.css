@@ -37,6 +37,11 @@ body div a:hover {
 #terms {
   background: #999;
   border: none;
+  padding: 5px;
+  width: 120px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-size: 16px;
 }
 
 .post {

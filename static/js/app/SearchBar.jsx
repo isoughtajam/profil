@@ -13,7 +13,7 @@ export default class SearchBar extends React.Component {
             id="terms"
             type="text"
             name="terms"
-            placehlder="search..."
+            placeholder="search..."
           />
         </form>
       </div>
