@@ -15,17 +15,18 @@ export default class SearchResultsContainer extends React.Component {
   * 
   */
   componentDidMount() {
-    var search_terms = document.getElementById('term_string').content;
-    fetch("/get-search-results/" + search_terms)
+    var searchTerms = document.getElementById('term_string').content;
+    fetch("/get-search-results/" + searchTerms)
         .then(res => res.json())
         .then(jsonRes => this.setState(jsonRes));
   }
 
   render() {
-    var result_count = this.state.results.length;
+    var resultCount = this.state.results.length;
+    var resultNoun = resultCount == 1 ? 'result' : 'results';
     return (
       <div id="search-results-container">
-        <p class="search-header">Found {result_count} result(s).</p>
+        <p class="search-header">Found {resultCount} {resultNoun}.</p>
         <SearchResults 
           results={this.state.results}
         />
