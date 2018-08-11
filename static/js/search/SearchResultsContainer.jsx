@@ -25,7 +25,7 @@ export default class SearchResultsContainer extends React.Component {
     var result_count = this.state.results.length;
     return (
       <div id="search-results-container">
-        <p class="search-header">Found {result_count} results.</p>
+        <p class="search-header">Found {result_count} result(s).</p>
         <SearchResults 
           results={this.state.results}
         />
