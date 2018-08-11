@@ -6,7 +6,7 @@
   height: 400px;
 }
 
-.writePostInput {
+.writePostInput, .writePostSubmit {
   display: block;
   clear: right;
   margin: 10px 0 10px 20px;

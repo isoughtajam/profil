@@ -56,7 +56,9 @@ export default class WritePost extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <input type="submit" value="Submit" />
+          <div class="writePostSubmit">
+            <input type="submit" value="Submit" />
+          </div>
         </form>
       </div>
     )
