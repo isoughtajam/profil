@@ -21,7 +21,6 @@ body {
 #container {
   text-align: justify;
   padding: 0 30px 30px 30px;
-  margin-top: 100px;
   position: absolute;
   overflow-y: scroll;
 }
@@ -31,9 +30,20 @@ body {
   width: 100%;
   padding-left: 30px;
   padding-bottom: 30px;
-  position: fixed;
   background: #ccc;
   z-index: 100;
+}
+
+#search-bar {
+  float: right;
+  margin: 20px 20px 0 20px;
+  font-size: 20px;
+}
+
+#terms {
+  background: #999;
+  border: none;
+  padding: 5px;
 }
 
 .webring {
