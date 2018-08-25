@@ -123,7 +123,7 @@ def get_latest_post():
     cursor = conn.cursor()
 
     latest_post_query = """
-        select post_id, title, author, post_date, post_slug from post_meta order by post_id DESC limit 1
+        select post_id, title, author, post_date, post_slug from post_meta order by post_date DESC limit 1
     """
     cursor.execute(latest_post_query)
     meta_data = cursor.fetchall()
@@ -192,7 +192,7 @@ def get_prev_and_next_slugs(post_id):
     cursor = conn.cursor()
 
     lag_lead_query = """
-        select post_id, lag(post_slug, 1) over (order by post_id), lead(post_slug, 1) over (order by post_id) from post_meta;
+        select post_id, lag(post_slug, 1) over (order by post_date), lead(post_slug, 1) over (order by post_date) from post_meta;
     """
     cursor.execute(lag_lead_query)
     lag_lead_data = cursor.fetchall()
