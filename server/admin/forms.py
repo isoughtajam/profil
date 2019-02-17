@@ -1,5 +1,5 @@
-
 from datetime import datetime
+
 
 def validate_write_post_form(data):
     """

@@ -1,10 +1,8 @@
-from datetime import datetime
-import psycopg2
 import re
 import time
-from functools import wraps
+from datetime import datetime
 
-from flask import g, request, redirect, url_for
+import psycopg2
 
 
 def save_written_post(data):
@@ -21,7 +19,6 @@ def save_written_post(data):
     slug = re.sub('[^0-9a-zA-z-]+', '', slug)
     slug = slug.lower()
 
-    paragraphs = []
     graphs = body.split('\r\n')
     # Escape single quotes
     graphs = [graph.replace("'", "''") for graph in graphs if graph]
@@ -35,7 +32,7 @@ def save_written_post(data):
         ('{0}', '{1}', '{2}', '{3}');
     """.format(title, author, date, slug)
     cursor.execute(meta_query)
-    
+
     # Get post_id of new post metadata
     new_post_id_query = """
       select post_id from post_meta where title='{0}' and post_date='{1}';
@@ -56,12 +53,11 @@ def save_written_post(data):
             cursor.execute("""
                 insert into post_paragraph(post_id, para_text) values
                 ('{0}', '{1}');
-            """.format(post_id, graph)
-            )
+            """.format(post_id, graph))
     except Exception as e:
         conn.rollback()
         conn.close()
-        return False, "Paragraphs failed to write"
+        return False, "Paragraphs failed to write {}".format(e)
 
     conn.commit()
     conn.close()
@@ -75,7 +71,8 @@ def insert_links(graphs):
     paragraphs = []
     for graph_data in graphs:
         graph = graph_data.get('paraText', '')
-        start, occurences = re.subn(r'~~~', r'<a target="_blank" href="', graph)
+        start, occurences = re.subn(r'~~~', r'<a target="_blank" href="',
+                                    graph)
         middle, occurences = re.subn(r'@@@', r'">', start)
         end, occurences = re.subn(r'%%%', r'</a>', middle)
         paragraphs.append({
@@ -123,7 +120,10 @@ def get_latest_post():
     cursor = conn.cursor()
 
     latest_post_query = """
-        select post_id, title, author, post_date, post_slug from post_meta order by post_date DESC limit 1
+        select post_id, title, author, post_date, post_slug
+        from post_meta
+        order by post_date DESC
+        limit 1
     """
     cursor.execute(latest_post_query)
     meta_data = cursor.fetchall()
@@ -156,11 +156,15 @@ def get_post_meta_query(slug=None, post_id=None):
 
     if slug:
         return """
-            select post_id, title, author, post_date, post_slug from post_meta where post_slug = '{0}'
+            select post_id, title, author, post_date, post_slug
+            from post_meta
+            where post_slug = '{0}'
         """.format(slug)
     else:
         return """
-            select post_id, title, author, post_date, post_slug from post_meta where post_id = {0}
+            select post_id, title, author, post_date, post_slug
+            from post_meta
+            where post_id = {0}
         """.format(post_id)
 
 
@@ -172,7 +176,10 @@ def get_paragraph_data(post_id):
     cursor = conn.cursor()
 
     paragraph_query = """
-        select para_id, para_text from post_paragraph where post_id = {0} order by para_id
+        select para_id, para_text
+        from post_paragraph
+        where post_id = {0}
+        order by para_id
     """.format(post_id)
     cursor.execute(paragraph_query)
     paragraph_data = cursor.fetchall()
@@ -180,8 +187,9 @@ def get_paragraph_data(post_id):
     conn.close()
     # convert links to markup
     return insert_links([{
-        'paraId': graph_data[0], 'paraText': graph_data[1]
-            } for graph_data in paragraph_data])
+        'paraId': graph_data[0],
+        'paraText': graph_data[1]
+    } for graph_data in paragraph_data])
 
 
 def get_prev_and_next_slugs(post_id):
@@ -192,13 +200,15 @@ def get_prev_and_next_slugs(post_id):
     cursor = conn.cursor()
 
     lag_lead_query = """
-        select post_id, lag(post_slug, 1) over (order by post_date), lead(post_slug, 1) over (order by post_date) from post_meta;
+        select post_id, lag(post_slug, 1) over (order by post_date),
+            lead(post_slug, 1) over (order by post_date) from post_meta;
     """
     cursor.execute(lag_lead_query)
     lag_lead_data = cursor.fetchall()
 
     conn.close()
-    return [(slugs[1], slugs[2]) for slugs in lag_lead_data if slugs[0] == post_id][0]
+    return [(slugs[1], slugs[2]) for slugs in lag_lead_data
+            if slugs[0] == post_id][0]
 
 
 def get_pre_login_info(username):
