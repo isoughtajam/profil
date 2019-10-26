@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const config = {
+  mode: 'production',
   entry:  {
     landing: __dirname + '/js/landing/index.jsx',
     app: __dirname + '/js/app/app.entry.jsx',

@@ -1,15 +1,17 @@
-
 from datetime import datetime
+import json
+
+from util import parse_simple_fields
 
 def validate_write_post_form(data):
     """
     Validate WriteForm react component
     """
-    title = data.get('postTitle')
+    title = parse_simple_fields(data.get('postTitle'))
     if not title:
         return False, "no post title"
 
-    date = data.get('postDate')
+    date = parse_simple_fields(data.get('postDate'))
     try:
         datetime.strptime(date, '%Y-%m-%d')
     except Exception as e:

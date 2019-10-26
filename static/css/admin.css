@@ -31,3 +31,31 @@
   display: block;
   margin: 20px 0 0 20px;
 }
+
+#login {
+  margin-top: 10px;
+}
+
+#postTitle, #postDate, #postBody, #submit-button-div {
+  margin: 30px 0 0 30px;
+}
+
+#editor-postTitle, #editor-postDate, #editor-postBody {
+  background: white;
+}
+
+#editor-postBody, .ql-toolbar.ql-snow {
+  width: 80%;
+}
+
+#editor-postBody {
+  height: 300px;
+}
+
+#editor-postTitle, #editor-postDate {
+  width: 20%;
+}
+
+.ql-toolbar.ql-snow {
+  background-color: darkgray;
+}

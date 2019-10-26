@@ -1,6 +1,6 @@
 {
   "name": "profil",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "upgrade your gray matter, 'cause one day it may matter",
   "main": "index.js",
   "scripts": {
@@ -11,8 +11,10 @@
   "author": "Gautam Joshi",
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
+    "@babel/core": "^7.6.4",
+    "@babel/preset-react": "^7.6.3",
+    "ajv": "^6.9.1",
+    "babel-loader": "^8",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
@@ -21,7 +23,9 @@
     "datejs": "^1.0.0-rc3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "webpack": "^3.10.0"
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9"
   },
   "babel": {
     "presets": [
@@ -31,7 +35,8 @@
     ]
   },
   "dependencies": {
-    "ghadyaal": "^0.2.3",
+    "@babel/cli": "^7.6.4",
+    "ghadyaal": "^0.2.4",
     "package.json": "^2.0.1"
   }
 }

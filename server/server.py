@@ -96,9 +96,10 @@ def write():
             return render_template("write.html")
 
         validate_result, validate_text = validate_write_post_form(request.form)
+        messages.append(validate_text)
         if validate_result:
             save_result, save_text = save_written_post(request.form)
-        messages.append(validate_text)
+            messages = [save_text] if not save_result else []
         return render_template("write.html", messages=messages)
     return redirect("/login/")
 
