@@ -1,18 +1,21 @@
-# server.py
+# app.py
 import hashlib
 import json
 import logging
+from datetime import datetime, timedelta
 from urlparse import urlparse
 
-from flask import Flask, render_template, send_from_directory, request, redirect, url_for
+from flask import (Flask, make_response, redirect, render_template, request,
+                   send_from_directory)
 
 from admin.forms import validate_write_post_form
-from admin.util import (save_written_post, get_post_content, 
-    get_latest_post, get_pre_login_info)
+from admin.util import (get_latest_post, get_post_content, get_pre_login_info,
+                        save_written_post)
+from constants import COOKIE_KEY, COOKIE_VALUE
 from search import parse_search_terms_into_tsquery, search_post_data
 
-
-app = Flask(__name__, static_folder="../static/dist", template_folder="../static")
+app = Flask(
+    __name__, static_folder="../static/dist", template_folder="../static")
 app.config.from_envvar('PROFIL_CONFIG')
 
 logger = logging.getLogger(__name__)
@@ -20,7 +23,17 @@ logger = logging.getLogger(__name__)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    """
+    Initial Welcome page unless "welcome" cookie is found, in which case,
+     user is redirected to /blog
+    """
+    hello = request.cookies.get('welcome')
+    if hello:
+        return redirect('/blog')
+    resp = make_response(render_template("index.html"))
+    expiration = datetime.now() + timedelta(days=90)
+    resp.set_cookie(COOKIE_KEY, value=COOKIE_VALUE, expires=expiration)
+    return resp
 
 
 @app.route("/images/<path:path>")
@@ -123,7 +136,8 @@ def search():
     - meta tag contains "search"
     """
     term_str = request.args.get('terms', '')
-    return render_template("search.html", content_type="search", term_string=term_str)
+    return render_template(
+        "search.html", content_type="search", term_string=term_str)
 
 
 @app.route("/login/", methods=['GET', 'POST'])
@@ -148,4 +162,4 @@ def login():
 
 
 if __name__ == "__main__":
-  app.run()
+    app.run()

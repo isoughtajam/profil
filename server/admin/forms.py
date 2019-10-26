@@ -3,6 +3,7 @@ import json
 
 from util import parse_simple_fields
 
+
 def validate_write_post_form(data):
     """
     Validate WriteForm react component

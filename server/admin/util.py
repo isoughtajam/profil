@@ -3,9 +3,9 @@ import json
 import psycopg2
 import re
 import time
-from functools import wraps
+from datetime import datetime
 
-from flask import g, request, redirect, url_for
+import psycopg2
 
 ATT_TAGS = {
     'link': ('<a href="{}" target="_blank">', '</a>'),
@@ -60,7 +60,7 @@ def save_written_post(data):
         values ('{0}', '{1}', '{2}', '{3}');
     """.format(title, author, date, slug)
     cursor.execute(meta_query)
-    
+
     # Get post_id of new post metadata
     new_post_id_query = """
       select post_id
@@ -89,7 +89,7 @@ def save_written_post(data):
     except Exception as e:
         conn.rollback()
         conn.close()
-        return False, "Paragraphs failed to write"
+        return False, "Paragraphs failed to write {}".format(e)
 
     conn.commit()
     conn.close()
@@ -103,7 +103,8 @@ def insert_links(graphs):
     paragraphs = []
     for graph_data in graphs:
         graph = graph_data.get('paraText', '')
-        start, occurences = re.subn(r'~~~', r'<a target="_blank" href="', graph)
+        start, occurences = re.subn(r'~~~', r'<a target="_blank" href="',
+                                    graph)
         middle, occurences = re.subn(r'@@@', r'">', start)
         end, occurences = re.subn(r'%%%', r'</a>', middle)
         paragraphs.append({
@@ -283,7 +284,8 @@ def get_prev_and_next_slugs(post_id):
     lag_lead_data = cursor.fetchall()
 
     conn.close()
-    return [(slugs[1], slugs[2]) for slugs in lag_lead_data if slugs[0] == post_id][0]
+    return [(slugs[1], slugs[2]) for slugs in lag_lead_data
+            if slugs[0] == post_id][0]
 
 
 def get_pre_login_info(username):
