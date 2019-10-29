@@ -1,6 +1,4 @@
-from datetime import datetime
 import json
-import psycopg2
 import re
 import time
 from datetime import datetime
@@ -13,6 +11,7 @@ ATT_TAGS = {
     'bold': ('<b>', '</b>'),
     'underline': ('<u>', '</u>')
 }
+
 
 def parse_simple_fields(json_data):
     """
@@ -32,8 +31,17 @@ def parse_long_form_fields(json_data):
     """
     Parses form inputs from formatted editor fields, assuming multiple formatted fields
     """
+    split_lines = []
     loaded = json.loads(json_data)
-    graphs = [json.dumps(graph) for graph in loaded]
+    for item in loaded:
+        text = item.get('insert')
+        attributes = item.get('attributes')
+        split_lines += [{
+            'insert': t,
+            'attributes': attributes
+        } for t in text.split('\n')]
+
+    graphs = [json.dumps(graph).replace("\'", "\'\'") for graph in split_lines]
     return graphs
 
 
@@ -123,6 +131,12 @@ def interpret_editor_content(para_list):
     paragraphs = []
     for para in para_list:
         text = para[1].get('insert')
+        if text == u'':
+            paragraphs.append({
+                'paraId': 0,
+                'paraText': '\n\n'
+            })
+            continue
         attributes = para[1].get('attributes')
         if attributes:
             for att, att_data in attributes.items():
@@ -130,10 +144,14 @@ def interpret_editor_content(para_list):
                 if att == 'link':
                     html_open = html_open.format(att_data)
                 text = html_open + text + ATT_TAGS[att][1]
-        paragraphs.append({
-            'paraId': para[0],
-            'paraText': text
-            })
+        if not paragraphs or (
+                len(paragraphs) > 0 and paragraphs[-1]['paraId'] == 0):
+            paragraphs.append({
+                'paraId': para[0],
+                'paraText': text
+                })
+        else:
+            paragraphs[-1]['paraText'] += text
     return paragraphs
 
 
