@@ -13,18 +13,14 @@ const config = {
     filename: '[name].bundle.js',
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.css']
+    extensions: ['.js', '.jsx', '.css', '.json']
   },
   module: {
     rules: [
       {
-        test: /\.jsx?/,
+        test: /\.jsx$/,
         exclude: /node_modules/,
         use: 'babel-loader'
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
       }
     ]
   }
