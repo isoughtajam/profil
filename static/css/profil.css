@@ -54,6 +54,10 @@ body div a:hover {
   font-size: 24px;
 }
 
+#search-results {
+  font-family: 'Tajawal', sans-serif;
+}
+
 .pre-next-link {
   border: none;
   background: inherit;
@@ -307,8 +311,3 @@ body div a:hover {
     99% {color:#66b;}
     100% {color:#18f;}
 }
-
-/*
-Android max-width 640
-recent iPhone max-width 667
-*/

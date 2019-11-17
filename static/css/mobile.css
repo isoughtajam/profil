@@ -33,19 +33,19 @@ html, #root {
 
 .links-title {
   font-family: 'Raleway', monospace;
-  font-size: 32px;
+  font-size: 24px;
 }
 
 .post-paragraph {
-  font-size: 22px;
+  font-size: 16px;
 }
 
 .post-date {
-  font-size: 22px;
+  font-size: 16px;
 }
 
 #container {
-  text-align: justify;
+  text-align: right;
   padding: 0 30px 30px 30px;
   position: absolute;
   overflow-y: scroll;
@@ -63,7 +63,7 @@ html, #root {
 #search-bar {
   float: right;
   margin: 20px 20px 0 20px;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 #terms {
@@ -82,12 +82,12 @@ html, #root {
   vertical-align: middle;
 }
 
-.post-title {
+.post-title, .search-header {
   font-family: 'Raleway', monospace;
-  font-size: 32px;
+  font-size: 24px;
 }
 
-.post {
+.post, #search-results {
   font-family: 'Tajawal', sans-serif;
 }
 
@@ -96,9 +96,9 @@ html, #root {
 }
 
 .post-nav-link {
-  font-size: 22px;
+  font-size: 24px;
   display: inline;
-  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .nav-link {

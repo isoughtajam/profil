@@ -1,9 +1,13 @@
+import json
 import re
 from collections import namedtuple
 
 import psycopg2
 
-SearchResult = namedtuple('SearchResult', 'term post_slug text post_title')
+from admin.util import interpret_editor_content
+
+SearchResult = namedtuple('SearchResult', ('term post_slug text post_title '
+                                           'para_id before after'))
 
 
 def search_post_data(terms):
@@ -11,16 +15,27 @@ def search_post_data(terms):
     Search title and post paragraphs for the search terms
     """
     title_query = """
-    select '{0}', pm.post_slug, pm.title, pm.title
+    select '{0}', pm.post_slug, pm.title, pm.title, -1, '', ''
     from post_meta pm
     where to_tsvector(pm.title) @@ to_tsquery('{1}')
     """
 
     para_query = """
-    select '{0}', pm.post_slug, pp.para_text, pm.title
-    from post_meta pm
-    join post_paragraph pp on pp.post_id=pm.post_id
-    where to_tsvector(pp.para_text) @@ to_tsquery('{1}')
+    select search_term, post_slug, text, post_title, para_id, before, after
+    from (
+        select
+            '{0}' as search_term,
+            pm.post_slug as post_slug,
+            pp.para_text as text,
+            pm.title as post_title,
+            pp.para_id as para_id,
+            lag(pp.para_text, 1) over (order by pp.para_id) as before,
+            lead(pp.para_text, 1) over (order by pp.para_id) as after
+        from post_meta pm
+        join post_paragraph pp
+        on pp.post_id=pm.post_id
+    ) a
+    where to_tsvector(text) @@ to_tsquery('{1}')
     """
     conn = psycopg2.connect('postgresql:///profil_db')
     cursor = conn.cursor()
@@ -35,20 +50,50 @@ def search_post_data(terms):
     ]
     title_query = ' union all '.join(title_union)
     para_query = ' union all '.join(para_union)
-    search_query = ' union all '.join([title_query, para_query])
 
-    cursor.execute(search_query)
-    result_data = cursor.fetchall()
-    results = [
-        SearchResult(
-            term=result[0],
-            post_slug=result[1],
-            text=result[2],
-            post_title=result[3]) for result in result_data
-    ]
-    # import pdb
-    # pdb.set_trace()
-    return parse_results_for_highlights(results)
+    all_results = []
+    for source, query in (('title', title_query), ('paragraphs', para_query)):
+        cursor.execute(query)
+        result_data = cursor.fetchall()
+        initial_results = [
+            SearchResult(
+                term=result[0],
+                post_slug=result[1],
+                text=result[2],
+                post_title=result[3],
+                para_id=result[4],
+                before=result[5],
+                after=result[6]
+            ) for result in result_data
+        ]
+        paragraph_results = []
+        if source == 'paragraphs':
+            for result in initial_results:
+                interpreted = []
+                for text in (
+                        result.before, result.text, result.after):
+                    loaded = json.loads(text)
+                    if not loaded:
+                        loaded = {}
+                    interpreted.append(
+                        interpret_editor_content(
+                            [(0, {'insert': loaded.get('insert')})]))
+                paragraph_results.append(
+                    SearchResult(
+                        term=result.term,
+                        post_slug=result.post_slug,
+                        text=' '.join(text[0].get('paraText') for text in interpreted),
+                        post_title=result.post_title,
+                        para_id=result.para_id,
+                        before=result.before,
+                        after=result.after
+                    )
+                )
+        if not paragraph_results:
+            all_results += initial_results
+        else:
+            all_results += paragraph_results
+    return parse_results_for_highlights(all_results)
 
 
 def parse_search_terms_into_tsquery(term_string):
@@ -109,7 +154,4 @@ def parse_results_for_highlights(result_data):
             'post_title': result.post_title
         })
         index += 1
-
-    # import pdb
-    # pdb.set_trace()
     return {'results': for_display}
